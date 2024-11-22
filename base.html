@@ -1,0 +1,148 @@
+<title>
+    elterbug - base
+</title>
+<style>
+#top-bar{
+    background-color:0f0030;
+    /* opacity:0.8;  */
+    color:ffffff;
+    font-weight:bold;
+    font-size:32;
+    width:100%;
+    left:0;
+    position:absolute;
+    top:-1%;
+    height:51
+}
+#top-bar-objects{
+    margin-top:6;
+    /* margin-left:10%; */
+    /* display:none; */
+    /* margin:auto; */
+}
+#tb-label{
+    margin-left:20%;
+    display:inline;
+}
+#tb-menus{
+    display:inline;
+    position:absolute;
+    left:55%;
+}
+#tb-menus * {
+    display:inherit;
+    
+    /* position:absolute; */
+}
+#top-bar a {
+    text-decoration: none;
+    color: ffffff;
+}
+/* #top-bar a:hover {
+    text-decoration: underline;
+} */
+#tb-menus a:hover {
+    color: ffddff;
+}
+#tb-menu-menubox-1{
+    top:40px;
+    border-radius:16px;
+    position:absolute;
+    display:none;
+    background-color:777777;
+    font-weight:normal;
+    font-size:23;
+    width:150;
+    /* height:100; */
+}
+</style>
+<script>
+    function reshow(){
+        var s = document.getElementById("top-bar");
+        s.style.position = "fixed";
+        var yoff = window.pageYOffset;
+        if(yoff < 200){
+            s.style.top = ((yoff - 150)-51) + "px";
+        }else{
+            s.style.top = -1 + "%";
+        }
+    }
+    
+    window.addEventListener("scroll", function(){
+        if(window.pageYOffset>150){
+            reshow();
+        }else{
+            document.getElementById("top-bar").style.position = "absolute";
+            document.getElementById("top-bar").style.top = "-1%";
+        }
+    });
+    if(window.pageYOffset>150){
+            reshow();
+        }else{
+            document.getElementById("top-bar").style.position = "absolute";
+            document.getElementById("top-bar").style.top = "-1%";
+        }
+    function showMenu(id){
+        var box = document.getElementById("tb-menu-menubox-" + id);
+        if(box.style.display=="none" || box.style.display==""){
+            box.style.opacity = 0.25
+            box.style.display="inherit";
+            setTimeout(() => {
+                box.style.opacity = 0.5;
+                setTimeout(() => {
+                box.style.opacity = 0.75;
+                setTimeout(() => {
+                box.style.opacity = 1;
+            }, 20);
+            }, 20);
+            }, 20);
+        }
+    }
+    function hideMenu(id){
+        var box = document.getElementById("tb-menu-menubox-" + id);
+        if(box.style.display=="inherit"){
+            box.style.opacity = 0.75
+            setTimeout(() => {
+                box.style.opacity = 0.5;
+                setTimeout(() => {
+                box.style.opacity = 0.25;
+                setTimeout(() => {
+                box.style.opacity = 0;
+                box.style.display = "none";
+            }, 20);
+            }, 20);
+            }, 20);
+        }
+        
+    }
+</script>
+<body>
+    <div id="top-bar">
+        <div id="top-bar-objects">
+            <a id="tb-label" href="home.html">
+                Base
+            </a>
+            <div id="tb-menus">
+                <div id="tb-menu-1" onmouseover="showMenu(1)" onmouseleave="hideMenu(1)" height=50px>
+                    <div id="tb-menu-menubox-1">
+                        <div style="margin:5px"><!-- links go in there -->
+                            <a href="base.html">
+                                Item
+                            </a>
+                        </div>
+                    </div>
+                    <div>menu test</div>
+                        <svg viewBox="-1 -1 21 21" width="20" height="20" style="position:relative;">
+                            <line x1="1" y1="7" x2="11" y2="17" stroke="white" stroke-width="3" />
+                            <line x1="19" y1="7" x2="9" y2="17" stroke="white" stroke-width="3" />
+                        </svg>
+                          
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <h1 style="text-align:center">
+        Page
+    </h1>
+</body>
