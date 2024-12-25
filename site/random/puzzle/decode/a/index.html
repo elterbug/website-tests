@@ -6,7 +6,7 @@
   type "#" in the url, and then put the password (all lowercase)
 </body>
 <script>
-  document.body.innerHTML += '<br><div>you are trying to enter the password of \''+ window.location.hash.substring(1) +'\'</div>';
+  document.body.innerHTML += '<br><div>you are trying to enter the password \''+ window.location.hash.substring(1) +'\'</div>';
   if(window.location.hash.substring(1) == "lemonade"){
     document.body.innerHTML += '<br><div>It\'s correct. Put "/download" in the url (before the #)</div>';
   }else{
