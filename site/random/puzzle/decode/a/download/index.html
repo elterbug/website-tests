@@ -3,8 +3,14 @@
 </title>
 <body>
   <a href="thing ig.html" download="OPEN THIS">Download link</a>
-<br><br><br>
+<br><br><br><br>
 
   doesn't work?
-  <input type=button value="try another way" onclick="document.body.innerHTML += '<br><iframe src=\"thing ig.html\">'">
+  <input type=button value="try another way" onclick="run()">
 </body>
+
+<script>
+  function run(){
+    document.body.innerHTML += "<br><iframe src='thing ig.html'>"
+  }
+</script>
