@@ -1,1 +1,57 @@
+<input type="file" placeholder="f" id="file"><br><input type="button" value="run" onclick="run()">
 
+<script>
+    function run(){
+        file = document.getElementById("file").files[0];
+        if (file) {
+        // 3. Create a FileReader object
+        const reader = new FileReader();
+
+        // 4. Define what happens when the file is loaded
+        reader.onload = function(event) {
+            const fileContent = event.target.result;
+            // Display the content in the output element
+            // document.getElementById('output').textContent = fileContent; 
+            // console.log("File content:", fileContent);
+            openHtmlInNewTab(fileContent)
+        };
+
+        // 5. Define what happens if an error occurs
+        reader.onerror = function(event) {
+            console.error("Error reading file:", event.target.error);
+        };
+
+        // 6. Read the file as text
+        // Use readAsText for text files (txt, csv, json, etc.)
+        reader.readAsText(file);
+    } else {
+        alert("No file selected.")
+        // document.getElementById('output').textContent = "No file selected.";
+    }
+
+    }
+
+    function openHtmlInNewTab(htmlContent) {
+        // 1. Create a Blob object from the HTML string with the correct MIME type
+        const blob = new Blob([htmlContent], { type: 'text/html' });
+
+        // 2. Generate a temporary URL for the Blob
+        const blobUrl = URL.createObjectURL(blob);
+
+        // 3. Open the URL in a new tab
+        const newTab = window.open(blobUrl, '_blank');
+        
+        // Optional: Set a custom title for the new tab (works best if you write to the document first)
+        if (newTab) {
+            newTab.addEventListener('DOMContentLoaded', function() {
+            // newTab.document.title = 'Canvas';
+            });
+        }
+
+        // 4. Revoke the object URL to free up memory (can be done after the tab is opened, 
+        // though the browser manages memory for blob URLs when the creating tab is closed).
+        // A good practice for single-use:
+        // URL.revokeObjectURL(blobUrl); 
+    }
+
+</script>
